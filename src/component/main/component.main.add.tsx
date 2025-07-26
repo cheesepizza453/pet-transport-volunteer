@@ -1,9 +1,8 @@
 import useStoreContent from "../../store/store.content";
 import Modal from "../common/modal/modal";
-import ModalMapInfo from "../common/modal/modal.map.info";
-import {volunteerMarkers} from "../../../public/data/volunteer.markers";
 import React from "react";
 import ModalAddInfo from "../common/modal/modal.add.info";
+import { VolunteerMarkers } from "interface/interface.common";
 
 type VolunteerFormData = {
     name: string;
@@ -15,7 +14,13 @@ type VolunteerFormData = {
     arriveLng: number;
     supportOptions: string[]
 };
-export default function ComponentMainAdd() {
+
+type IProps = {
+    markers: VolunteerMarkers[];
+    setMarkers: React.Dispatch<React.SetStateAction<VolunteerMarkers[]>>;
+};
+
+export default function ComponentMainAdd(props:IProps) {
     const { openModal, isModal, modalId } = useStoreContent();
 
     const handleSubmit = (data: VolunteerFormData) => {

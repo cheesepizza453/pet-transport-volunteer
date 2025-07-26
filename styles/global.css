@@ -18,8 +18,6 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
 }
@@ -48,13 +46,36 @@ table {
 }
 
 
+.font-8 {
+    font-size: 8px;
+}
 
 .font-10 {
     font-size: 10px;
 }
 
+.font-12 {
+    font-size: 12px;
+}
+
+.font-14 {
+    font-size: 12px;
+}
+
 .font-15 {
     font-size: 15px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-24 {
+    font-size: 24px;
 }
 
 .font-30 {
