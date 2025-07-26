@@ -1,6 +1,4 @@
 import React from 'react';
-import Script from "next/script";
-import type { VolunteerFormData } from '@/component/common/modal/modal.add.info'
 
 interface IProps{
     data: {
