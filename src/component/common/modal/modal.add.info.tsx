@@ -47,7 +47,6 @@ export default function ModalAddInfo({onSubmit}: {onSubmit: (data: VolunteerForm
     });
 
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-    console.log(form)
     const handleSearchStartAddress = () => {
         new (window as any).daum.Postcode({
             oncomplete: async function (data: any) {

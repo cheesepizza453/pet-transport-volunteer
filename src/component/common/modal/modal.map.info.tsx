@@ -24,7 +24,7 @@ interface IProps{
 export default function ModalMapInfo({ data }: IProps) {
   console.log(data);
     return (
-      <div className="w-[85vw] h-[500px] px-[50px] pb-[40px] overflow-y-scroll overflow-x-hidden">
+      <div className="w-[85vw] h-[500px] px-[25px] pb-[40px] overflow-y-scroll overflow-x-hidden">
         <p className="font-18 text-left font-extrabold">{data.title}</p>
         <div className={'relative mt-[20px]'}>
           <figure className={'relative w-full min-h-[300px] bg-gray-100 rounded-[12px] overflow-hidden'}>
@@ -58,7 +58,7 @@ export default function ModalMapInfo({ data }: IProps) {
             <p className={'text-left font-15 font-extrabold text-[#333333] tracking-[-0.5px]'}>한사랑 멈무 사랑 보호소</p>
             <p className={'mt-[10px] w-full font-pretendard font-14 tracking-[-0.2px]'}>안녕하세요. 파주시에서 강아지를 보호하고 있는 한사랑 멈무
               사랑 보호소 입니다.</p>
-            <p className={'mt-[4px] w-full font-pretendard font-12 tracking-[-0.2px] text-gray-500'}>2025.07.25 부터 2026.01.01 까지 구인 예정</p>
+            <p className={'mt-[4px] w-full font-pretendard font-12 tracking-[-0.2px] text-gray-500'}>25.07.25 부터 26.01.01 까지 구인 예정</p>
           </div>
           <div className={'mt-[20px]'}>
             <span className={'font-bold font-14 text-[#3d9eef]'}>채팅 하기</span>

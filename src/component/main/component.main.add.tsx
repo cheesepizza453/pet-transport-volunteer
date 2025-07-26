@@ -21,6 +21,7 @@ type IProps = {
 };
 
 export default function ComponentMainAdd(props:IProps) {
+    const inLogin = useStoreContent(state => state.inLogin);
     const { openModal, isModal, modalId } = useStoreContent();
 
     const handleSubmit = (data: VolunteerFormData) => {
@@ -31,11 +32,13 @@ export default function ComponentMainAdd(props:IProps) {
 
     return(
         <>
+            { inLogin &&
             <button onClick={() => {
                 openModal('addInfo')
             }} type={'button'}
                     className={'absolute bottom-[30px] right-[30px] w-[50px] h-[50px] rounded-full overflow-hidden bg-[#63b8ff] text-white font-30 cursor-pointer'}>+
             </button>
+            }
             {
                 isModal && modalId === 'addInfo' &&
                 <Modal content={<ModalAddInfo onSubmit={handleSubmit}/>} type={'center'}/>

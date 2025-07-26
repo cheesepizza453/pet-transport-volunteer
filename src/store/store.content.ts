@@ -10,6 +10,8 @@ type Store = {
     openModal: (id: ModalId) => void;
     closeModal: () => void;
     setContentSize: (contentSize: IContentSize) => void;
+    inLogin: boolean;
+    setInLogin: (inLogin: boolean) => void;
 };
 
 type Actions = {
@@ -42,13 +44,16 @@ const useStoreContent = create<Store & Actions>()((set, get) => ({
     },
     isModal: false,
     modalId: null,
+    inLogin: false,
 
     openModal: (id) => set({ isModal: true, modalId: id }),
-    closeModal: () => {set({ isModal: false, modalId: null }), console.log('sdf')},
+    closeModal: () => {set({ isModal: false, modalId: null })},
 
     setContentSize: (contentSize: IContentSize) => {
         set({ contentSize: contentSize });
     },
+
+    setInLogin: (inLogin) => set({ inLogin })
 }));
 
 export default useStoreContent;

@@ -2,6 +2,7 @@ import ComponentSvgHamburger from "../../svg/component.svg.hamburger";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Script from "next/script";
+import useStoreContent from "../../../store/store.content";
 
 declare global {
     interface Window {
@@ -10,6 +11,8 @@ declare global {
 }
 
 function ComponentLayoutHeader() {
+    const inLogin = useStoreContent(state => state.inLogin);
+    const setInLogin = useStoreContent(state => state.setInLogin);
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -32,7 +35,7 @@ function ComponentLayoutHeader() {
                 })
                     .then(function (response:any) {
                         console.log("🙋 사용자 정보:", response);
-                        setIsLoggedIn(true);
+                        setInLogin(true)
                     })
                     .catch(function (error:any) {
                         console.log("❌ 사용자 정보 요청 실패:", error);
@@ -49,7 +52,7 @@ function ComponentLayoutHeader() {
 
         Kakao.Auth.logout(() => {
             console.log("👋 로그아웃 완료");
-            setIsLoggedIn(false);
+            setInLogin(false)
         });
     };
 
@@ -94,7 +97,7 @@ function ComponentLayoutHeader() {
                     <div
                       onClick={handleClick}
                       className={
-                          "absolute py-[100px] px-[50px] top-0 right-0 w-[60%] min-w-[300px] h-[100vh] bg-white z-[20]"
+                          "flex flex-col justify-between absolute py-[100px] px-[50px] top-0 right-0 w-[60%] min-w-[300px] h-[100dvh] bg-white z-[20]"
                       }
                     >
                         <h1 className={"font-30 font-pretendard font-light"}>
@@ -103,14 +106,15 @@ function ComponentLayoutHeader() {
                                 반려동물 <br/>이동봉사
                             </strong>
                         </h1>
-                        {isLoggedIn ? (
-                          <>
-                              <p><strong>홍길동</strong>님</p>
-                              <button type={'button'} onClick={() => {
+                        {inLogin ? (
+                          <div>
+                              <button
+                                className={'mt-[5px]'} type={'button'} onClick={() => {
                                   handleKakaoLogout()
-                              }}>로그아웃
+                              }}>
+                                  <p className={'font-14 underline text-blue-600'}>로그아웃</p>
                               </button>
-                          </>
+                          </div>
                         ) : (
                           <button
                             onClick={handleKakaoLogin}
