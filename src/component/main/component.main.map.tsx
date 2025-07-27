@@ -5,10 +5,13 @@ import { db } from '@/firebase/firebase';
 import useStoreContent from "../../store/store.content";
 import Modal from "../common/modal/modal";
 import ModalMapInfo from "../common/modal/modal.map.info";
+import { VolunteerFormData } from '../../../interface/interface.common';
+import { Timestamp } from 'firebase/firestore';
+
 
 const containerStyle = {
   width: '100%',
-  height: '500px',
+  height: '68dvh',
 };
 
 const DEFAULT_LOCATION = {
@@ -16,29 +19,9 @@ const DEFAULT_LOCATION = {
   lng: 126.9780,
 };
 
-type VolunteerMarker = {
-  id: string;
-  title: string;
-  name: string;
-  startAddress: string;
-  startLat: number;
-  startLng: number;
-  arriveAddress: string;
-  arriveLat: number;
-  arriveLng: number;
-  supportOptions: string[]
-  gender: string;
-  age: number;
-  weight: number;
-  image: string;
-  desc: string;
-  contact: string;
-  phone: string;
-};
-
 type IProps = {
-  markers: VolunteerMarker[];
-  setMarkers: React.Dispatch<React.SetStateAction<VolunteerMarker[]>>;
+  markers: VolunteerFormData[];
+  setMarkers: React.Dispatch<React.SetStateAction<VolunteerFormData[]>>;
   selected: string | null;
   setSelected: React.Dispatch<React.SetStateAction<string | null>>;
 };
@@ -68,7 +51,7 @@ export default function ComponentMainMap(props:IProps) {
 
     const fetchMarkers = async () => {
       const querySnapshot = await getDocs(collection(db, 'volunteers'));
-      const data: VolunteerMarker[] = [];
+      const data: VolunteerFormData[] = [];
       querySnapshot.forEach((doc) => {
         const d = doc.data();
         data.push({
@@ -81,14 +64,18 @@ export default function ComponentMainMap(props:IProps) {
           arriveAddress: d.arriveAddress,
           arriveLat: d.arriveLat,
           arriveLng: d.arriveLng,
-          supportOptions: d.supportOptions,
           gender: d.gender,
           age: d.age,
           weight: d.weight,
           image: d.image,
+          petDesc: d.petDesc,
+          requesterName: d.requesterName,
+          requesterPhone: d.requesterPhone,
+          requesterInfo: d.requesterInfo,
           desc: d.desc,
-          contact: d.contact,
-          phone: d.phone,
+          createdAt: (d.createdAt instanceof Timestamp)
+            ? d.createdAt.toDate()
+            : new Date(),
         });
       });
       props.setMarkers(data);
@@ -110,9 +97,13 @@ export default function ComponentMainMap(props:IProps) {
               key={marker.id}
               position={{ lat: marker.startLat, lng: marker.startLng }}
               title={marker.name}
+              icon={{
+                url: '/img/pin.png',
+                scaledSize: new google.maps.Size(43, 34),
+              }}
               onClick={() => {
                 openModal('volunteerInfo');
-                props.setSelected(marker.id);
+                props.setSelected(marker.id || null);
               }}
             />
           ))}

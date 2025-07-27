@@ -1,5 +1,5 @@
-export type VolunteerMarkers = {
-  id: string;
+export type VolunteerFormData = {
+  id?: string;
   title: string;
   name: string;
   startAddress: string;
@@ -8,13 +8,14 @@ export type VolunteerMarkers = {
   arriveAddress: string;
   arriveLat: number;
   arriveLng: number;
-  supportOptions: string[]
   gender: string;
   age: number;
   weight: number;
   image: string;
   desc: string;
-  contact: string;
-  phone: string;
+  petDesc: string;
+  requesterName: string;
+  requesterPhone: string;
+  requesterInfo: string;
+  createdAt: Date;
 };
-

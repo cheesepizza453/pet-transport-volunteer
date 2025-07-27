@@ -1,17 +1,16 @@
 import ComponentMainMap from "./component.main.map";
-import ComponentMainAdd from "./component.main.add";
 import ComponentMainList from "./component.main.list";
 import React, {useState} from "react";
-import { VolunteerMarkers } from "interface/interface.common";
+import { VolunteerFormData } from '../../../interface/interface.common';
 
 function ComponentMain(){
-  const [markers, setMarkers] = useState<VolunteerMarkers[]>([]);
+  const [markers, setMarkers] = useState<VolunteerFormData[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
 
   return(
     <div>
       <ComponentMainMap markers={markers} setMarkers={setMarkers} selected={selected} setSelected={setSelected}/>
-      <ComponentMainAdd markers={markers} setMarkers={setMarkers}/>
+      {/*<ComponentMainAdd markers={markers} setMarkers={setMarkers}/>*/}
       <ComponentMainList markers={markers} setMarkers={setMarkers} selected={selected} setSelected={setSelected}/>
     </div>
   )

@@ -62,14 +62,14 @@ export default function Modal(props: IProps) {
         <div className={'relative flex justify-center items-center h-full'}>
             <article
                 className={
-                    `flex-col mq-[padding|30px_20px<38px_35px] rounded-[30px] relative flex justify-center items-center overflow-hidden bg-[#f9f8f5] z-[12] ${props.className && props.className}`
+                    `flex-col pt-[30px] rounded-[20px] relative flex justify-center items-center bg-[#f9f8f5] z-[12] ${props.className && props.className}`
                 }
             >
-                <button className={'z-1000 mt-[20px] mr-[20px] self-end w-[20px] h-[20px] font-pretendard font-bold text-red font-30'}
+                <button className={'z-1000 absolute top-[-35px] right-[10px]'}
                         onClick={() => closeModal()}
                         type={'button'}>
-                    <figure className={'w-[20px] h-[20px]'}>
-                        <ComponentSvgClose/>
+                    <figure className={'w-[25px] h-[25px]'}>
+                        <ComponentSvgClose fill={'white'}/>
                     </figure>
                 </button>
                 {props.content}

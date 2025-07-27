@@ -2,22 +2,11 @@ import useStoreContent from "../../store/store.content";
 import Modal from "../common/modal/modal";
 import React from "react";
 import ModalAddInfo from "../common/modal/modal.add.info";
-import { VolunteerMarkers } from "interface/interface.common";
-
-type VolunteerFormData = {
-    name: string;
-    startAddress: string;
-    startLat: number;
-    startLng: number;
-    arriveAddress: string;
-    arriveLat: number;
-    arriveLng: number;
-    supportOptions: string[]
-};
+import { VolunteerFormData } from 'interface/interface.common';
 
 type IProps = {
-    markers: VolunteerMarkers[];
-    setMarkers: React.Dispatch<React.SetStateAction<VolunteerMarkers[]>>;
+    markers: VolunteerFormData[];
+    setMarkers: React.Dispatch<React.SetStateAction<VolunteerFormData[]>>;
 };
 
 export default function ComponentMainAdd(props:IProps) {

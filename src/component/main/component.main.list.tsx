@@ -1,12 +1,12 @@
-import { VolunteerMarkers } from "interface/interface.common";
 import React from "react";
 import useStoreContent from "../../store/store.content";
 import Modal from "../common/modal/modal";
 import ModalMapInfo from "../common/modal/modal.map.info";
+import { VolunteerFormData } from '../../../interface/interface.common';
 
 type IProps = {
-  markers: VolunteerMarkers[];
-  setMarkers: React.Dispatch<React.SetStateAction<VolunteerMarkers[]>>;
+  markers: VolunteerFormData[];
+  setMarkers: React.Dispatch<React.SetStateAction<VolunteerFormData[]>>;
   selected: string | null;
   setSelected: React.Dispatch<React.SetStateAction<string | null>>;
 };
@@ -16,20 +16,20 @@ export default function ComponentMainList(props:IProps) {
 
   return (
     <>
-    <div className={'p-[30px] pt-[40px] pb-[100px] h-[300px] overflow-y-scroll'}>
-      <p className={'font-bold font-14'}>{props.markers.length || 0}마리의 반려동물이 이동을 기다리고 있어요.</p>
-    <ul className={'mt-[30px] flex flex-col'}>
+    <div className={'absolute bottom-0 w-full bg-[white] p-[30px] pt-[30px] pb-[40px] h-[28dvh] overflow-y-scroll'}>
+      <p className={'font-bold font-16'}>{props.markers.length || 0}마리의 반려동물이 이동을 기다리고 있어요.</p>
+    <ul className={'mt-[20px] flex flex-col'}>
       {props.markers.map((marker) => (
-        <li key={marker.id} className={'mb-[15px] flex bg-[#f8f8f8] p-[15px] rounded-[10px] overflow-hidden cursor-pointer'}
+        <li key={marker.id} className={'mb-[15px] flex p-[15px] rounded-[10px] overflow-hidden cursor-pointer'}
             onClick={() => {
               openModal('volunteerInfo');
-              props.setSelected(marker.id);
+              props.setSelected(marker.id ?? null);
             }}>
           <figure className={'shrink-0 w-[60px] h-[60px] rounded-[10px] overflow-hidden mr-[10px]'}>
             <img src={marker.image} alt={marker.title}/>
           </figure>
-          <div className={'pr-[50px]'}>
-            <p className={'truncate font-16 font-bold'}><strong>{marker.title}</strong></p>
+          <div className={'w-0 flex-1'}>
+            <h5 className={'w-full truncate font-16 font-bold'}>{marker.title}</h5>
             <p className={'truncate mt-[4px] font-14 font-light'}>{marker.name}</p>
           </div>
         </li>
